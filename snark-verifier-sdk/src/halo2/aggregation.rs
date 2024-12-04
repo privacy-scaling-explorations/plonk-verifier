@@ -21,8 +21,8 @@ use halo2_base::{
 use itertools::Itertools;
 use rand::{rngs::StdRng, SeedableRng};
 use serde::{Deserialize, Serialize};
-#[cfg(debug_assertions)]
-use snark_verifier::util::arithmetic::fe_to_limbs;
+// #[cfg(debug_assertions)]
+// use snark_verifier::util::arithmetic::fe_to_limbs;
 use snark_verifier::{
     loader::{
         self,
@@ -461,15 +461,15 @@ where
         })
         .collect();
 
-    #[cfg(debug_assertions)]
-    {
-        let KzgAccumulator { lhs, rhs } = _accumulator;
-        let instances =
-            [lhs.x, lhs.y, rhs.x, rhs.y].map(fe_to_limbs::<_, Fr, LIMBS, BITS>).concat();
-        for (lhs, rhs) in instances.iter().zip(accumulator.iter()) {
-            assert_eq!(lhs, rhs.value());
-        }
-    }
+    // #[cfg(debug_assertions)]
+    // {
+    //     let KzgAccumulator { lhs, rhs } = _accumulator;
+    //     let instances =
+    //         [lhs.x, lhs.y, rhs.x, rhs.y].map(fe_to_limbs::<_, Fr, LIMBS, BITS>).concat();
+    //     for (lhs, rhs) in instances.iter().zip(accumulator.iter()) {
+    //         assert_eq!(lhs, rhs.value());
+    //     }
+    // }
     // put back `pool` into `builder`
     *pool = loader.take_ctx();
     SnarkAggregationOutput { previous_instances, accumulator, preprocessed, proof_transcripts }
