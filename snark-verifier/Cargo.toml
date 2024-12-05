@@ -36,7 +36,7 @@ sha3 = { version = "=0.10", optional = true }
 ruint = { version = "=1.12", optional = true }
 
 # revm only used for testing smart contract execution
-revm = { version = "=3.5.0", optional = true }
+revm = { version = "=18.0.0", optional = true }
 
 [dev-dependencies]
 ark-std = { version = "0.3.0", features = ["print-trace"] }

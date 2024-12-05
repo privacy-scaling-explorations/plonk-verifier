@@ -1,19 +1,18 @@
+use revm::primitives::TxKind;
 use revm::{
-    primitives::{CreateScheme, ExecutionResult, Output, TransactTo, TxEnv},
-    InMemoryDB, EVM,
+    primitives::{ExecutionResult, Output, TransactTo, TxEnv},
+    Context, Evm, Handler, InMemoryDB,
 };
 
 /// Deploy contract and then call with calldata.
 /// Returns gas_used of call to deployed contract if both transactions are successful.
 pub fn deploy_and_call(deployment_code: Vec<u8>, calldata: Vec<u8>) -> Result<u64, String> {
-    let mut evm = EVM {
-        env: Default::default(),
-        db: Some(InMemoryDB::default()),
-    };
+    let mut evm =
+        Evm::new(Context::new_with_db(InMemoryDB::default()), Handler::new(Default::default()));
 
-    evm.env.tx = TxEnv {
+    *evm.tx_mut() = TxEnv {
         gas_limit: u64::MAX,
-        transact_to: TransactTo::Create(CreateScheme::Create),
+        transact_to: TxKind::Create,
         data: deployment_code.into(),
         ..Default::default()
     };
@@ -37,7 +36,7 @@ pub fn deploy_and_call(deployment_code: Vec<u8>, calldata: Vec<u8>) -> Result<u6
         _ => unreachable!(),
     };
 
-    evm.env.tx = TxEnv {
+    *evm.tx_mut() = TxEnv {
         gas_limit: u64::MAX,
         transact_to: TransactTo::Call(contract),
         data: calldata.into(),

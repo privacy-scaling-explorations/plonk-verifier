@@ -430,7 +430,8 @@ impl EvmLoader {
         //  unimplemented
     }
 
-    pub fn print_gas_metering(self: &Rc<Self>, _: Vec<u64>) {
+    #[allow(dead_code)]
+    fn print_gas_metering(self: &Rc<Self>, _: Vec<u64>) {
         //  unimplemented
     }
 }
