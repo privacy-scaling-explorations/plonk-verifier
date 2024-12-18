@@ -110,14 +110,14 @@ pub trait EccInstructions<'a, C: CurveAffine>: Clone + Debug {
     /// Returns reference of [`EccInstructions::ScalarChip`].
     fn scalar_chip(&self) -> &Self::ScalarChip;
 
-    /// Assign a elliptic curve point constant.
+    /// Assign an elliptic curve point constant.
     fn assign_constant(
         &self,
         ctx: &mut Self::Context,
         ec_point: C,
     ) -> Result<Self::AssignedEcPoint, Error>;
 
-    /// Assign a elliptic curve point witness.
+    /// Assign an elliptic curve point witness.
     fn assign_point(
         &self,
         ctx: &mut Self::Context,
