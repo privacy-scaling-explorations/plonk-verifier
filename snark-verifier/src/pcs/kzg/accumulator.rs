@@ -166,7 +166,7 @@ mod halo2 {
         x.zip(y).map(|(x, y)| C::from_xy(x, y).unwrap())
     }
 
-    /// Instructions to encode/decode a elliptic curve point into/from limbs.
+    /// Instructions to encode/decode an elliptic curve point into/from limbs.
     pub trait LimbsEncodingInstructions<'a, C: CurveAffine, const LIMBS: usize, const BITS: usize>:
         EccInstructions<'a, C>
     {
