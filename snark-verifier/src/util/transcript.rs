@@ -57,6 +57,6 @@ pub trait TranscriptWrite<C: CurveAffine>: Transcript<C, NativeLoader> {
     /// Write a scalar.
     fn write_scalar(&mut self, scalar: C::Scalar) -> Result<(), Error>;
 
-    /// Write a elliptic curve point.
+    /// Write an elliptic curve point.
     fn write_ec_point(&mut self, ec_point: C) -> Result<(), Error>;
 }
