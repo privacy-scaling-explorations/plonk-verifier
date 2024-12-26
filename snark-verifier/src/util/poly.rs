@@ -15,7 +15,7 @@ use std::{
 pub struct Polynomial<F>(Vec<F>);
 
 impl<F> Polynomial<F> {
-    /// Initialize an univariate polynomial.
+    /// Initialize a univariate polynomial.
     pub fn new(inner: Vec<F>) -> Self {
         Self(inner)
     }
