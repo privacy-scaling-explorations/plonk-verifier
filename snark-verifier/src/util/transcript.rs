@@ -43,7 +43,7 @@ where
         (0..n).map(|_| self.read_scalar()).collect()
     }
 
-    /// Read a elliptic curve point.
+    /// Read an elliptic curve point.
     fn read_ec_point(&mut self) -> Result<L::LoadedEcPoint, Error>;
 
     /// Read `n` elliptic curve point.
